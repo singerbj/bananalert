@@ -1,37 +1,98 @@
 <html lang="en">
     <head>
-        <title>SoundCloud Remake</title>
+        <title>Banana Clock!</title>
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
         <link href="style.css" rel="stylesheet">
-
+        <link href=' http://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
     </head>
     <body>
-      <div class="container-fluid">
+      <br>
+      <br>
+      <div class="container">
         <div class="row"> 
-          <div class="col-md-12" style="text-align: center;">
-            <h1>mkdrink</h1>
+          <div class="col-md-3"></div> 
+          <div class="col-md-6 curve"> 
+            <div class="row"> 
+              <div class="col-md-12">
+                  <h1>Bananalert!</h1>
+                <p>
+                  Ever forget to eat your bananas or stress about them because you don't know if they're ripe or not?
+                  <br>
+                  Never again - Thanks to Bananalert!
+                  <br>
+                  The app that texts you when your bananas are ripe and ready to eat!
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <h3>Step 1</h3>
+                <p>Select Your Banana's Color</p>
+              </div> 
+            </div> 
+            <div class="row setone">
+              <div class="col-md-4 square"> 
+              </div>
+              <div class="col-md-4 square">
+              </div>
+              <div class="col-md-4 square"> 
+              </div> 
+            </div>
+            <div class="row settwo">
+              
+              <div class="col-md-4 square"> 
+              </div>
+              <div class="col-md-4 square"> 
+              </div>
+              <div class="col-md-4 square">
+              </div>
+            </div>
+            <div class="row"> 
+              <div class="col-md-12">
+                <h3>Step 2</h3>
+                <p>Choose Your Preference</p>
+              </div>
+            </div>
+            <div class="row"> 
+              <div class="col-md-12">
+                <div class="radio">
+                  <label><input type="radio" name="optradio">I like bananas greener!</label>
+                </div>
+                <div class="radio">
+                  <label><input type="radio" name="optradio">I like bananas yellow!</label>
+                </div>
+                <div class="radio">
+                  <label><input type="radio" name="optradio">I like bananas browner!</label>
+                </div>
+              </div>
+            </div> 
+            <div class="row"> 
+              <div class="col-md-12">
+                <h3>Step 3</h3>
+                <p>Enter Your Phone Number & Carrier</p>
+                <label>Phone</label>
+                <input class="form-control" type="text" id="phone"></input>
+                <br>
+                <label>Carrier</label>
+                <select class="form-control" id="carrier">
+                  <option>Sprint</option>
+                  <option>Verizon</option>
+                  <option>T-Mobile</option>
+                </select>
+              </div>
+            </div>
+            <br>
+            <div class="row"> 
+              <div class="col-md-12">
+                <button class="btn btn-primary fullWidth">Set Reminder!</button>
+              </div>
+            </div>
+            <br>
           </div>
+          <div class="col-md-3"></div>
         </div>
-        <div class="row"> 
-          <div class="col-md-3">
-            <h3>Whatcha can have:</h3>
-            <input class="form-control" type="text" id="ingredient-search" placeholder="search"></input>
-            <div id="ingredient-results"></div>
-          </div>
-          <div class="col-md-3"> 
-            <h3>Whatcha do have:</h3>
-            <div id="ingredient-have"></div>
-          </div>
-          <div class="col-md-3"> 
-            <h3>Whatcha can make:</h3>
-            <div id="drink-make"></div>
-          </div>
-          <div class="col-md-3"> 
-            <h3>Whatcha should get:</h3>
-            <div id="ingredient-need"></div>
-          </div>
-        </div>
-      </div>
+        <br>
+        <br>
 
         <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
         <!--script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js"></script-->
