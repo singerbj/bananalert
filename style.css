@@ -1,31 +1,7 @@
-.setone .square:nth-of-type(1){
-  background: linear-gradient(#09902D, #4E9D33);
-}
-.setone .square:nth-of-type(2){
-  background: linear-gradient(#09902D, #C4B33C);
-}
-.setone .square:nth-of-type(3){
-  background: linear-gradient(#319830, #FDBD41);
-}
-.settwo .square:nth-of-type(1){
-  background: linear-gradient(#ACAE3B, #FDBD41);
-}
-.settwo .square:nth-of-type(2){
-  background: #FFC845;
-}
-.settwo .square:nth-of-type(3){
-  background: linear-gradient(#FDBD41, #E49B39);
-}
-
 body{
   background-image: url('https://t2.ftcdn.net/jpg/00/61/95/15/240_F_61951518_naBHymGgaRZDhVN4XDqYlOD1YNdWtcVX.jpg');
   background-repeat: repeat;
   background-size: 80px 80px;
-}
-
-.square {
-  height: 80px;
-  outline: 3px solid white;
 }
 
 .fullWidth{ width: 100%;}
@@ -57,13 +33,19 @@ h1{
 }
 
 .btn:hover{
-  color: #333;
   border: 1px solid #E49B39; 
+  background: linear-gradient(#FDBD41, #E49B39);
+  color: #333;
+  font-family: 'Bangers', cursive;
+  font-size: 36px;
 }
 
 .btn:active { 
-  background-color: yellow;
-  background: linear-gradient(#E49B39, #FDBD41);
+  border: 1px solid #E49B39; 
+  background: linear-gradient(#FDBD41, #E49B39);
+  color: #333;
+  font-family: 'Bangers', cursive;
+  font-size: 36px;
 }
 
 .title{
