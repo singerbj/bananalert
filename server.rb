@@ -2,11 +2,12 @@ require 'sinatra'
 require 'json'
 require 'active_record'
 require 'sqlite3'
+require 'rufus-scheduler'
+require 'sms-easy'
+require 'mail'
  
 class Banana < ActiveRecord::Base
 end
-
-
 
 ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: 'dbfile.sqlite3')
 
@@ -17,13 +18,13 @@ if ARGV[0] == 'reset'
   end
   ActiveRecord::Migration.class_eval do
     create_table :bananas do |t|
-      t.integer :phone
+      t.string :phone
       t.string :carrier
-      t.integer :hour
-      t.integer :min      
+      t.datetime :notifyDate      
     end
   end  
 end
+
 configure do
   set :public_folder, '.'
 end
@@ -40,26 +41,20 @@ post '/bananas' do
     request.body.rewind
     o = JSON.parse(request.body.read) 
     b = Banana.new   
-    if o['hour']
-      b.hour = o['hour'].to_i
+    if o['notifyDate']
+      b.notifyDate = o['notifyDate'].to_datetime
     else
-      msg = "hour not specified"
+      msg = "notifyDate not specified"
       throw msg
-    end
-    if o['min']
-      b.min = o['min'].to_i
-    else
-      msg = "min not specified"
-      throw msg
-    end
+    end   
     if o['phone']
-      b.phone = o['phone'].to_i
+      b.phone = o['phone'].to_s
     else
       msg = "phone not specified"
       throw msg
     end 
     if o['carrier']
-      b.min = o['carrier'].to_s
+      b.carrier = o['carrier'].to_s
     else
       msg = "carrier not specified"
       throw msg
@@ -72,4 +67,33 @@ post '/bananas' do
   end
   r
 end 
+
+
+def check_for_alerts  
+  puts "== checking times in db #{Time.now}"
+  SMSEasy::Client.config['from_address'] = "bananalertnotify@gmail.com"
+  sms = SMSEasy::Client.new
+  bananas = Banana.all
+  bananas.each do |b|
+    puts "#{b.inspect} == #{Time.now}"
+    if b.notifyDate.past?
+      puts "sending text to #{b.phone} on carrier #{b.carrier}"
+
+      Mail.deliver do
+        from 'bananalertnotify@gmail.com'
+        to SMSEasy::Client.sms_address(b.phone, b.carrier)
+        body "BANANALERT! Your banana is ready to be eaten based on your personal preferences!"
+      end
+
+      b.destroy!
+    end
+  end
+  ActiveRecord::Base.connection.close
+end
+
+check_for_alerts 
+scheduler = Rufus::Scheduler.new
+scheduler.every '3' do    
+  check_for_alerts  
+end
 
