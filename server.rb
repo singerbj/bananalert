@@ -12,8 +12,10 @@ end
 ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: 'dbfile.sqlite3')
 
 if ARGV[0] == 'reset'
-  ActiveRecord::Migration.class_eval do
-    drop_table :bananas do |t|
+  if ActiveRecord::Base.connection.table_exists? 'bananas'
+    ActiveRecord::Migration.class_eval do
+      drop_table :bananas do |t|
+      end
     end
   end
   ActiveRecord::Migration.class_eval do
